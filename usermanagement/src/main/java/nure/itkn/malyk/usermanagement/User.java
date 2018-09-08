@@ -2,14 +2,18 @@ package nure.itkn.malyk.usermanagement;
 import java.util.Date;
 import java.io.Serializable;
 
-public class User implements Serializable {
+class User implements Serializable {
 	private static final long serialVersionUID = -4186523343377560524L;
 	private Long id;
 	private String firstName;
 	private String lastName;
 	private Date dateOfBirth;
 	
-	public User() {//TODO but I`m not sure
+	public User(Long id, String firstName, String lastName, Date dateOfBirth) {
+		setId(id);
+		setFirstName(firstName);
+		setLastName(lastName);
+		setDateOfBirth(dateOfBirth);
 	}
 	
 	/**
