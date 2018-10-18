@@ -6,7 +6,10 @@ import java.util.Calendar;
 import junit.framework.TestCase;
 
 public class TestUserClass extends TestCase {
-	private User user;
+	private static final String NAME_ETALON = "Иванов, Иван";
+  private static final String LAST_NAME = "Иванов";
+  private static final String FIRST_NAME = "Иван";
+  private User user;
 	
 	public TestUserClass() {
 	  super();
@@ -19,13 +22,13 @@ public class TestUserClass extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		user = new User(Long.valueOf(1L), "Иван", "Иванов", new SimpleDateFormat("dd-MM-yyyy").parse("18-12-1998"));
+		user = new User(Long.valueOf(1L), FIRST_NAME, LAST_NAME, new SimpleDateFormat("dd-MM-yyyy").parse("18-12-1998"));
 		
 	}
 	
 	
 	public void testGetFullName() {
-	  assertEquals("Иванов, Иван", user.getFullName());
+	  assertEquals(NAME_ETALON, user.getFullName());
 	}
 	
 
