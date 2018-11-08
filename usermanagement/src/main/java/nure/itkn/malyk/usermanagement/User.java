@@ -121,15 +121,24 @@ class User implements Serializable {
 	}
 	/**
 	 * @param dateOfBirth the dateOfBirth to set
+     * @throws:  IllegalArgumentException Если дата рождения больше текущей даты
 	 */
 	public void setDateOfBirth(java.util.Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+		Calendar current_date = Calendar.getInstance();
+		current_date.setTime(new Date());
+		Calendar birth_date = Calendar.getInstance();
+		birth_date.setTime(dateOfBirth);
+		  
+		if(birth_date.after(current_date)) {
+		  throw new IllegalArgumentException("bad date");
+		} else {
+			this.dateOfBirth = dateOfBirth;
+		}
+		
 	}
 	
 	/**
-   * public String getFullName()
-   * requires: нет ограничений
-   * effects: полное имя пользоватея в формате lastName + " ," + firstName.
+   * @return: полное имя пользователя в формате "Фамилия, Имя"
    */
 	public String getFullName() {
 	  StringBuilder fullName = new StringBuilder();
@@ -140,30 +149,20 @@ class User implements Serializable {
 	}
 	
 	/**
-   * public int getAge()
-   * requires: нет ограничений
-   * effects: возраст пользователя. 
-   * Если дата рождения больше текущей даты, выбрасывается исключение IllegalArgumentException
+   * @return: возраст пользователя 
    */
 	public int getAge() {
 	  Calendar current_date = Calendar.getInstance();
 	  current_date.setTime(new Date());
 	  Calendar birth_date = Calendar.getInstance();
 	  birth_date.setTime(this.getDateOfBirth());
-	  
-	  if(birth_date.after(current_date)) {
-	    throw new IllegalArgumentException("bad date");
-	  }
-	  
+
 	  int age = current_date.get(Calendar.YEAR) - birth_date.get(Calendar.YEAR);
 	  if(birth_date.get(Calendar.MONTH) <= current_date.get(Calendar.MONTH)) {
 	    if (birth_date.get(Calendar.DAY_OF_MONTH) <= current_date.get(Calendar.DAY_OF_MONTH)) {
 	      return age;
-	    } else {
-	      return (age-1);
 	    }
-	  } else {
-	    return (age-1);
 	  }
+	  return (age-1);
 	}
 }
