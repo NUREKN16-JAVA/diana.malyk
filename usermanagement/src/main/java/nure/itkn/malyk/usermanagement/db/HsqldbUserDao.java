@@ -30,7 +30,7 @@ public class HsqldbUserDao implements UserDao {
 					.prepareStatement(INSERT_QUERY);
 			statement.setString(1, user.getFirstName());
 			statement.setString(2, user.getLastName());
-			statement.setDate(2, new java.sql.Date(user.getDateOfBirth().getTime()));
+			statement.setDate(3, new java.sql.Date(user.getDateOfBirth().getTime()));
 			int n = statement.executeUpdate();
 			if (n != 1) {
 				throw new DatabaseException("Number of inserted rows:" + n);
