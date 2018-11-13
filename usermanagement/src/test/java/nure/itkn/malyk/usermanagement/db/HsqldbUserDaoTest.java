@@ -13,14 +13,17 @@ import nure.itkn.malyk.usermanagement.User;
  *
  */
 public class HsqldbUserDaoTest extends TestCase {
-	HsqldbUserDao dao;
+	private HsqldbUserDao dao;
+	private ConnectionFactory connectionFactory;
+	
 	/* (non-Javadoc)
 	 * @see junit.framework.TestCase#setUp()
 	 */
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		dao = new HsqldbUserDao();
+		connectionFactory = new ConnectionFactoryImpl();
+		dao = new HsqldbUserDao(connectionFactory);
 	}
 	/**
 	 * Test method for {@link nure.itkn.malyk.usermanagement.db.HsqldbUserDao#create(nure.itkn.malyk.usermanagement.User)}.

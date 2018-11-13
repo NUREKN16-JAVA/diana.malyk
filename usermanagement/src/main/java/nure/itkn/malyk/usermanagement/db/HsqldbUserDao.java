@@ -1,7 +1,9 @@
 package nure.itkn.malyk.usermanagement.db;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 
@@ -29,8 +31,20 @@ public class HsqldbUserDao implements UserDao {
 			statement.setString(1, user.getFirstName());
 			statement.setString(2, user.getLastName());
 			statement.setDate(2, new java.sql.Date(user.getDateOfBirth().getTime()));
-			int n = statement.executeUpdate()
-			return null;
+			int n = statement.executeUpdate();
+			if (n != 1) {
+				throw new DatabaseException("Number of inserted rows:" + n);
+			}
+			CallableStatement callableStatement = connection.prepareCall("call IDENTITY()");
+			ResultSet keys = callableStatement.executeQuery();
+			if(keys.next()) {
+				user.setId(keys.getLong(1));
+			}
+			keys.close();
+			callableStatement.close();
+			statement.close();
+			connection.close();
+			return user;
 		} catch (DatabaseException e) {
 			throw e;
 		} catch (SQLException e) {
