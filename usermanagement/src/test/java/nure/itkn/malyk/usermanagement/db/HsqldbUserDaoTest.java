@@ -3,6 +3,7 @@
  */
 package nure.itkn.malyk.usermanagement.db;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.dbunit.DatabaseTestCase;
@@ -44,6 +45,16 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 			assertNotNull(user);
 			assertNotNull(user.getId());
 		} catch (Exception e) {
+			e.printStackTrace();
+			fail(e.toString());
+		}
+	}
+	public void testFindAll() {
+		try {
+			Collection findAll = dao.findAll();
+			assertNotNull("Collection is null", findAll);
+			assertEquals("Collection size", 2, findAll.size());
+		} catch (DatabaseException e) {
 			e.printStackTrace();
 			fail(e.toString());
 		}
