@@ -9,4 +9,6 @@ public interface UserDao {
 	void delete(User user) throws DatabaseException;
 	User find(User user) throws DatabaseException;
 	Collection findAll() throws DatabaseException;
+	
+	void setConnectionFactory(ConnectionFactory connectionFactory) throws DatabaseException;
 }

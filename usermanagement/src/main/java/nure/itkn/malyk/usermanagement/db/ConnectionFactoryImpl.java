@@ -5,13 +5,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactoryImpl implements ConnectionFactory {
+	private String url;
+	private String driver;
+	private String user; 
+	private String password;
+	
+	public ConnectionFactoryImpl(String driver, String url, String user, String password) {
+		this.url = url;
+		this.driver = driver;
+		this.user = user;
+		this.password = password;
+	}
 
 	@Override
 	public Connection createConnection() throws DatabaseException {
-		String url = "jdbc:hsqldb:file:db/usermanagement";
-		String driver = "org.hsqldb.jdbcDriver";
-		String user = "sa"; 
-		String password = "";
+
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {

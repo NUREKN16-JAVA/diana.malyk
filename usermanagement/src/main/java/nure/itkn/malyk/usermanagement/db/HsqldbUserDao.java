@@ -22,7 +22,21 @@ public class HsqldbUserDao implements UserDao {
 	}
 	
 	public HsqldbUserDao() {
-		// TODO Auto-generated constructor stub
+		
+	}
+
+	/**
+	 * @return the connectionFactory
+	 */
+	public ConnectionFactory getConnectionFactory() {
+		return connectionFactory;
+	}
+
+	/**
+	 * @param connectionFactory the connectionFactory to set
+	 */
+	public void setConnectionFactory(ConnectionFactory connectionFactory) {
+		this.connectionFactory = connectionFactory;
 	}
 
 	@Override
