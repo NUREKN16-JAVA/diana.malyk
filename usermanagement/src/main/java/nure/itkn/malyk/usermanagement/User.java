@@ -3,7 +3,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.io.Serializable;
 
-class User implements Serializable {
+public class User implements Serializable {
   /**
    * 
    */
