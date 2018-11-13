@@ -6,6 +6,12 @@ import nure.itkn.malyk.usermanagement.User;
 
 public class HsqldbUserDao implements UserDao {
 
+	private ConnectionFactory connectionFactory;
+	
+	public HsqldbUserDao(ConnectionFactory connectionFactory) {
+		this.connectionFactory = connectionFactory;
+	}
+	
 	public HsqldbUserDao() {
 		// TODO Auto-generated constructor stub
 	}
