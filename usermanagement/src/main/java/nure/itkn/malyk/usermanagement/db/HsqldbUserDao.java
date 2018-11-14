@@ -11,10 +11,11 @@ import java.util.LinkedList;
 
 import nure.itkn.malyk.usermanagement.User;
 
-public class HsqldbUserDao implements UserDao {
+class HsqldbUserDao implements UserDao {
 
 	private static final String SELECT_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users";
 	private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES (?, ?, ?)";
+	
 	private ConnectionFactory connectionFactory;
 	
 	public HsqldbUserDao(ConnectionFactory connectionFactory) {
@@ -22,7 +23,7 @@ public class HsqldbUserDao implements UserDao {
 	}
 	
 	public HsqldbUserDao() {
-		
+		// так и должно быть
 	}
 
 	/**
