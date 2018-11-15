@@ -96,12 +96,11 @@ class HsqldbUserDao implements UserDao {
 
 	@Override
 	public void delete(User user) throws DatabaseException {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public User find(User user) throws DatabaseException {
+	public User find(Long id) throws DatabaseException {
 		// TODO Auto-generated method stub
 		return null;
 	}

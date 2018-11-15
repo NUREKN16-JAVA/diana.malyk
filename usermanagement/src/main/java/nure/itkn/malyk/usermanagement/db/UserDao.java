@@ -25,11 +25,11 @@ public interface UserDao {
 	void delete(User user) throws DatabaseException;
 	/**
 	 * Find user in database
-	 * @param user
-	 * @return 
+	 * @param id 
+	 * @return User
 	 * @throws DatabaseException
 	 */
-	User find(User user) throws DatabaseException;
+	User find(Long id) throws DatabaseException;
 	Collection findAll() throws DatabaseException;
 	
 	void setConnectionFactory(ConnectionFactory connectionFactory) throws DatabaseException;
