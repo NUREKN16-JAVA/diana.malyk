@@ -10,6 +10,10 @@ public class DaoFactory {
 	
 	private final static DaoFactory INSTANCE = new DaoFactory();
 	
+	/**
+	 * Create exactly one DaoFactory
+	 * @return instance of DaoFactory
+	 */
 	public static DaoFactory getInstance() {
 		return INSTANCE;
 	}
@@ -30,7 +34,10 @@ public class DaoFactory {
 		String driver = properties.getProperty("connection.driver");
 		return new ConnectionFactoryImpl(driver, url, user, password);
 	}
-	
+	/**
+	 * 
+	 * @return UserDao 
+	 */
 	public UserDao getUserDao() {
 		UserDao result = null;
 		try {

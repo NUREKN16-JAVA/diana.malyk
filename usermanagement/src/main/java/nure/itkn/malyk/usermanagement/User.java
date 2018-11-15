@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class User implements Serializable {
   /**
-   * 
+   * Represent entity "user"
    */
   private static final long serialVersionUID = 6516265594737505284L;
   private Long id;
@@ -121,7 +121,7 @@ public class User implements Serializable {
 	}
 	/**
 	 * @param dateOfBirth the dateOfBirth to set
-     * @throws:  IllegalArgumentException Если дата рождения больше текущей даты
+     * @throws:  IllegalArgumentException If date of birthday after current date
 	 */
 	public void setDateOfBirth(java.util.Date dateOfBirth) {
 		Calendar current_date = Calendar.getInstance();
@@ -138,7 +138,7 @@ public class User implements Serializable {
 	}
 	
 	/**
-   * @return: полное имя пользователя в формате "Фамилия, Имя"
+   * @return: full user name in format "Surname, Name"
    */
 	public String getFullName() {
 	  StringBuilder fullName = new StringBuilder();
@@ -149,7 +149,7 @@ public class User implements Serializable {
 	}
 	
 	/**
-   * @return: возраст пользователя 
+   * @return: the age of user
    */
 	public int getAge() {
 	  Calendar current_date = Calendar.getInstance();

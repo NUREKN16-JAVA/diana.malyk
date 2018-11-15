@@ -15,7 +15,7 @@ class HsqldbUserDao implements UserDao {
 
 	private static final String SELECT_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users";
 	private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES (?, ?, ?)";
-	
+	private static final String UPDATE_QUERY = "UPDATE users SET firstname = ?, lastname = ?, dateofbirth = ? WHERE id = ?";
 	private ConnectionFactory connectionFactory;
 	
 	public HsqldbUserDao(ConnectionFactory connectionFactory) {
@@ -72,7 +72,25 @@ class HsqldbUserDao implements UserDao {
 
 	@Override
 	public void update(User user) throws DatabaseException {
-		// TODO Auto-generated method stub
+		try {
+			Connection connection = connectionFactory.createConnection();
+			PreparedStatement statement = connection
+					.prepareStatement(UPDATE_QUERY);
+			statement.setString(1, user.getFirstName());
+			statement.setString(2, user.getLastName());
+			statement.setDate(3, new java.sql.Date(user.getDateOfBirth().getTime()));
+			statement.setLong(4, user.getId());
+			int n = statement.executeUpdate();
+			if (n != 1) {
+				throw new DatabaseException("Can`t update "+user.getFullName());
+			}
+			statement.close();
+			connection.close();
+		} catch (DatabaseException e) {
+			throw e;
+		} catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
 
 	}
 

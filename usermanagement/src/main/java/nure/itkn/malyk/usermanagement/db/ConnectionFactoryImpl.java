@@ -9,7 +9,7 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 	private String driver;
 	private String user; 
 	private String password;
-	
+
 	public ConnectionFactoryImpl(String driver, String url, String user, String password) {
 		this.url = url;
 		this.driver = driver;
