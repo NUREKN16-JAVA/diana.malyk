@@ -13,6 +13,7 @@ import nure.itkn.malyk.usermanagement.User;
 
 class HsqldbUserDao implements UserDao {
 
+	private static final String DELETE_QUERY = "DELETE FROM users WHERE id = ?";
 	private static final String SELECT_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users WHERE id = ?";
 	private static final String SELECT_ALL_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users";
 	private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES (?, ?, ?)";
@@ -100,6 +101,17 @@ class HsqldbUserDao implements UserDao {
 
 	@Override
 	public void delete(User user) throws DatabaseException {
+		if(user.getId() == null) throw new DatabaseException();
+		
+		try {
+			Connection connection = connectionFactory.createConnection();
+			PreparedStatement statement = connection
+					.prepareStatement(DELETE_QUERY);
+			statement.setLong(1, user.getId());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new DatabaseException(e);
+		}
 		
 	}
 

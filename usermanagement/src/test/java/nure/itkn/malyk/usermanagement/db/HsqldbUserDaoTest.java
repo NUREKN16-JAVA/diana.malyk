@@ -61,24 +61,50 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 	}
 	/**
 	 * Test method for {@link nure.itkn.malyk.usermanagement.db.
-	 * HsqldbUserDao#findAll(nure.itkn.malyk.usermanagement.User)}.
+	 * HsqldbUserDao#find(nure.itkn.malyk.usermanagement.User)}.
 	 */
 	public void testFind() {
-		User user = new User();
-		user.setFirstName(USER_NAME);
-		user.setLastName(USER_SURNAME);
 		try {
+			User user = new User();
+			user.setFirstName(USER_NAME);
+			user.setLastName(USER_SURNAME);
 			user.setDateOfBirth(new SimpleDateFormat("dd-MM-yyyy").parse(DATE_OF_BIRTH_ETALON));
+			user.setId(1000L);
+			assertEquals(user, dao.find(user.getId()));
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-		user.setId(1000L);
-		try {
-			assertEquals(user, dao.find(user.getId()));
-		} catch (DatabaseException e) {
+		}catch (DatabaseException e) {
 			e.printStackTrace();
 			fail(e.toString());
 		}
+	}
+	/**
+	 * Test method for {@link nure.itkn.malyk.usermanagement.db.
+	 * HsqldbUserDao#delete(nure.itkn.malyk.usermanagement.User)}.
+	 */
+	public void testDelete() {
+		try {
+			User user = new User();
+			user.setFirstName(USER_NAME);
+			user.setLastName(USER_SURNAME);
+			user.setDateOfBirth(new SimpleDateFormat("dd-MM-yyyy").parse(DATE_OF_BIRTH_ETALON));
+			user.setId(1000L);
+			
+			dao.delete(user);
+			
+			IDataSet databaseDataSet = getConnection().createDataSet();
+			ITable actualTable = databaseDataSet.getTable("USERS");
+			IDataSet expectedDataSet = new XmlDataSet(getClass().getResourceAsStream("/usersDeleteDataSet.xml"));
+			ITable expectedTable = expectedDataSet.getTable("USERS");
+			Assertion.assertEquals(expectedTable, actualTable);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}catch (DatabaseException e) {
+			e.printStackTrace();
+			fail(e.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
 	}
 	/**
 	 * Test method for {@link nure.itkn.malyk.usermanagement.db.
