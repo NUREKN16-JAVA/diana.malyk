@@ -59,7 +59,27 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 			fail(e.toString());
 		}
 	}
-
+	/**
+	 * Test method for {@link nure.itkn.malyk.usermanagement.db.
+	 * HsqldbUserDao#findAll(nure.itkn.malyk.usermanagement.User)}.
+	 */
+	public void testFind() {
+		User user = new User();
+		user.setFirstName(USER_NAME);
+		user.setLastName(USER_SURNAME);
+		try {
+			user.setDateOfBirth(new SimpleDateFormat("dd-MM-yyyy").parse(DATE_OF_BIRTH_ETALON));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		user.setId(1000L);
+		try {
+			assertEquals(user, dao.find(user.getId()));
+		} catch (DatabaseException e) {
+			e.printStackTrace();
+			fail(e.toString());
+		}
+	}
 	/**
 	 * Test method for {@link nure.itkn.malyk.usermanagement.db.
 	 * HsqldbUserDao#findAll(nure.itkn.malyk.usermanagement.User)}.
