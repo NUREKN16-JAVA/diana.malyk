@@ -6,6 +6,7 @@ import nure.itkn.malyk.usermanagement.User;
 public interface UserDao {
 	/**
 	 * Add new user to database
+	 * Update param user - set id 
 	 * @param user with null id
 	 * @return user with generated id 
 	 * @throws DatabaseException

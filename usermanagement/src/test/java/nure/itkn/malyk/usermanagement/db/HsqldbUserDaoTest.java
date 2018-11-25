@@ -25,6 +25,7 @@ import nure.itkn.malyk.usermanagement.User;
  *
  */
 public class HsqldbUserDaoTest extends DatabaseTestCase {
+	private static final long ID_ETALON = 1000L;
 	private static final String USER_SURNAME = "Malyk";
 	private static final String USER_NAME = "Diana";
 	private static final String DATE_OF_BIRTH_ETALON = "18-12-1998";
@@ -69,7 +70,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 			user.setFirstName(USER_NAME);
 			user.setLastName(USER_SURNAME);
 			user.setDateOfBirth(new SimpleDateFormat("dd-MM-yyyy").parse(DATE_OF_BIRTH_ETALON));
-			user.setId(1000L);
+			user.setId(ID_ETALON);
 			assertEquals(user, dao.find(user.getId()));
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -88,7 +89,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 			user.setFirstName(USER_NAME);
 			user.setLastName(USER_SURNAME);
 			user.setDateOfBirth(new SimpleDateFormat("dd-MM-yyyy").parse(DATE_OF_BIRTH_ETALON));
-			user.setId(1000L);
+			user.setId(ID_ETALON);
 			
 			dao.delete(user);
 			
@@ -131,7 +132,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 			user.setFirstName(USER_NAME+"Update");
 			user.setLastName(USER_SURNAME+"Update");
 			user.setDateOfBirth(new SimpleDateFormat("dd-MM-yyyy").parse(DATE_OF_BIRTH_ETALON));
-			user.setId(1000L);
+			user.setId(ID_ETALON);
 			
 			dao.update(user);
 			
