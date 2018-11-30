@@ -19,12 +19,14 @@ public class MainFrameTest extends JFCTestCase {
 		setHelper(new JFCTestHelper());
 		mainFrame = new MainFrame();
 		mainFrame.setVisible(true);
+		
 	}
-
+	
 	protected void tearDown() throws Exception {
 		mainFrame.setVisible(false);
 		getHelper().cleanUp(this);
 		super.tearDown();
+		
 	}
 	
 	private Component find(Class componentClass, String name) {
@@ -42,6 +44,6 @@ public class MainFrameTest extends JFCTestCase {
 		find(JButton.class, "addButton");
 		find(JButton.class, "editButton");
 		find(JButton.class, "deleteButton");
-		find(JButton.class, "detailsButon");
+		find(JButton.class, "detailsButton");
 	}
 }
