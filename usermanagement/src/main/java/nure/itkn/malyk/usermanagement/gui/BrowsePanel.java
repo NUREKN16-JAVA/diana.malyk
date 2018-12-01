@@ -45,8 +45,10 @@ public class BrowsePanel extends JPanel implements ActionListener {
 
 	private JButton getDetailsButton() {
 		if (detailsButton == null) {
-			detailsButton = new JButton("Детали");
+			detailsButton = new JButton();
+			detailsButton.setText("Детали");
 			detailsButton.setName("detailsButton");
+			detailsButton.setActionCommand("details");
 			detailsButton.addActionListener(this);
 		}
 		return detailsButton;
@@ -54,8 +56,10 @@ public class BrowsePanel extends JPanel implements ActionListener {
 
 	private JButton getDeleteButton() {
 		if (deleteButton == null) {
-			deleteButton = new JButton("Удалить");
+			deleteButton = new JButton();
+			deleteButton.setText("Удалить");
 			deleteButton.setName("deleteButton");
+			deleteButton.setActionCommand("delete");
 			deleteButton.addActionListener(this);
 		}
 		return deleteButton;
@@ -63,8 +67,10 @@ public class BrowsePanel extends JPanel implements ActionListener {
 
 	private JButton getEditButton() {
 		if (editButton == null) {
-			editButton = new JButton("Редактировать");
+			editButton = new JButton();
+			editButton.setText("Редактировать");
 			editButton.setName("editButton");
+			editButton.setActionCommand("edit");
 			editButton.addActionListener(this);
 		}
 		return editButton;
@@ -72,8 +78,10 @@ public class BrowsePanel extends JPanel implements ActionListener {
 
 	private JButton getAddButton() {
 		if (addButton == null) {
-			addButton = new JButton("Добавить");
+			addButton = new JButton();
+			addButton.setText("Добавить");
 			addButton.setName("addButton");
+			addButton.setActionCommand("add");
 			addButton.addActionListener(this);
 		}
 		return addButton;
@@ -97,6 +105,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();
+		System.out.println(actionCommand);
 		if("add".equalsIgnoreCase(actionCommand)) {
 			this.setVisible(false);
 			parent.showAddPanel();

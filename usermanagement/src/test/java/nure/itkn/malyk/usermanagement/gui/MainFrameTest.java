@@ -53,9 +53,9 @@ public class MainFrameTest extends JFCTestCase {
 		JButton addButton = (JButton) find(JButton.class, "addButton");
 		getHelper().enterClickAndLeave(new MouseEventData(this, addButton)); 
 		
-		find(JPanel.class, "addPanel");
+		find(AddPanel.class, "addPanel");
 		
-		find(JTextField.class, "firtNameField");
+		find(JTextField.class, "firstNameField");
 		find(JTextField.class, "lastNameField");
 		find(JTextField.class, "dateOfBirthField");
 		find(JButton.class, "okButton");
