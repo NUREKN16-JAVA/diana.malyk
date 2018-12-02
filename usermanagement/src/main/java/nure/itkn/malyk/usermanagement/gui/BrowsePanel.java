@@ -138,8 +138,24 @@ public class BrowsePanel extends JPanel implements ActionListener {
 			parent.showEditPanel(user_id);
 		}
 		if("delete".equalsIgnoreCase(actionCommand)) { 
-			this.setVisible(false);
-			parent.showDeletePanel();
+			final int YES = 0;
+			int yes_no = JOptionPane.showConfirmDialog(this,
+                    "Удалить выбранного пользователя?",
+                    "Подтвердите удаление", 
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE); 
+			if (yes_no == YES) {
+				int row = getUserTable().getSelectedRow();
+				final int ID_COLUMN = 0;
+				Long user_id = (Long) getUserTable().getModel().getValueAt(row, ID_COLUMN);
+				User user = new User();
+				user.setId(user_id);
+				try {
+					parent.getDao().delete(user);
+				} catch (DatabaseException e1) {
+					JOptionPane.showMessageDialog(this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
 		}
 		if("details".equalsIgnoreCase(actionCommand)) { 
 			this.setVisible(false);

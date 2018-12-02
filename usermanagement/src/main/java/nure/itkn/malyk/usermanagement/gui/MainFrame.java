@@ -100,14 +100,7 @@ public class MainFrame extends JFrame {
 		showPanel(getEditPanel(user_id));
 	}
 
-	public void showDeletePanel() {
-		showPanel(getDeletePanel());
-	}
 
-	private JPanel getDeletePanel() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public void showDetailsPanel() {
 		showPanel(getDetailsPanel());
