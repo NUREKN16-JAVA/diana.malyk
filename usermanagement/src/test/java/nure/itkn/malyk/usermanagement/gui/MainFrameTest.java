@@ -29,6 +29,7 @@ public class MainFrameTest extends JFCTestCase {
 		Properties properties = new Properties();
 		properties.setProperty("dao.nure.itkn.malyk.usermanagement.db.UserDao", MockUserDao.class.getName());
 		properties.setProperty("dao.factory", DaoFactoryImpl.class.getName());
+		System.out.print(DaoFactoryImpl.class.getName());
 		DaoFactory.getInstance().init(properties);
 		
 		setHelper(new JFCTestHelper());

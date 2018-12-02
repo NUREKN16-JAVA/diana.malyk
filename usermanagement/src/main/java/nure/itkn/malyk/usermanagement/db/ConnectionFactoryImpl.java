@@ -19,15 +19,14 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 	}
 
 	public ConnectionFactoryImpl(Properties properties) {
-		String user = properties.getProperty("connection.user");
-		String password = properties.getProperty("connection.password");
-		String url = properties.getProperty("connection.url");
-		String driver = properties.getProperty("connection.driver");
+		user = properties.getProperty("connection.user");
+		password = properties.getProperty("connection.password");
+		url = properties.getProperty("connection.url");
+		driver = properties.getProperty("connection.driver");
 	}
 
 	@Override
 	public Connection createConnection() throws DatabaseException {
-
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {

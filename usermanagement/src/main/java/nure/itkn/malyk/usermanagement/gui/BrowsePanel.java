@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import nure.itkn.malyk.usermanagement.User;
 import nure.itkn.malyk.usermanagement.db.DatabaseException;
 import nure.itkn.malyk.usermanagement.util.Messages;
 
@@ -27,7 +28,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 
 	public BrowsePanel(MainFrame frame) {
 		parent = frame;
-		this.initialize();
+		initialize();
 	}
 
 	private void initialize() {
@@ -99,7 +100,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 		return tablePanel;
 	}
 
-	private JTable getUserTable() {
+	public JTable getUserTable() {
 		if(userTable == null) {
 			userTable = new JTable();
 			userTable.setName("userTable"); //$NON-NLS-1$
@@ -111,7 +112,11 @@ public class BrowsePanel extends JPanel implements ActionListener {
 		UserTableModel model;
 		try {
 			model = new UserTableModel(parent.getDao().findAll());
-		} catch (DatabaseException e) {
+		} catch (RuntimeException e1) {
+			model = new UserTableModel(new ArrayList());
+			e1.printStackTrace();
+		}
+		catch (Exception e) {
 			model = new UserTableModel(new ArrayList());
 			JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -121,12 +126,25 @@ public class BrowsePanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String actionCommand = e.getActionCommand();
-		System.out.println(actionCommand);
 		if("add".equalsIgnoreCase(actionCommand)) { //$NON-NLS-1$
 			this.setVisible(false);
 			parent.showAddPanel();
 		}
-		
+		if("edit".equalsIgnoreCase(actionCommand)) { 
+			int row = getUserTable().getSelectedRow();
+			final int ID_COLUMN = 0;
+			Long user_id = (Long) getUserTable().getModel().getValueAt(row, ID_COLUMN);
+			this.setVisible(false);
+			parent.showEditPanel(user_id);
+		}
+		if("delete".equalsIgnoreCase(actionCommand)) { 
+			this.setVisible(false);
+			parent.showDeletePanel();
+		}
+		if("details".equalsIgnoreCase(actionCommand)) { 
+			this.setVisible(false);
+			parent.showDetailsPanel();
+		}
 	}
 
 }
