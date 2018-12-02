@@ -21,6 +21,7 @@ public class MainFrame extends JFrame {
 	private AddPanel addPanel;
 	private UserDao dao;
 	private EditPanel editPanel;
+	private DetailsPanel detailsPanel;
 
 	public MainFrame() {
 		super();
@@ -102,13 +103,24 @@ public class MainFrame extends JFrame {
 
 
 
-	public void showDetailsPanel() {
-		showPanel(getDetailsPanel());
+	public void showDetailsPanel(Long user_id) {
+		showPanel(getDetailsPanel(user_id));
 	}
 
-	private JPanel getDetailsPanel() {
-		// TODO Auto-generated method stub
-		return null;
+	private JPanel getDetailsPanel(Long user_id) {
+		if (detailsPanel == null) {
+			detailsPanel = new DetailsPanel(this);
+		}
+		User user = null;
+		if (user_id >= 0) {
+			try {
+				user = getDao().find(user_id);
+			} catch (DatabaseException e) {
+				new RuntimeException(e);
+			}
+		}
+		detailsPanel.fillFields(user);
+		return detailsPanel;
 	}
 
 	public static void main(String[] args) {

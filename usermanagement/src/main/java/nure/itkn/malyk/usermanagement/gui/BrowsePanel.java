@@ -155,11 +155,17 @@ public class BrowsePanel extends JPanel implements ActionListener {
 				} catch (DatabaseException e1) {
 					JOptionPane.showMessageDialog(this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
+				initTable();
+				this.repaint();
+			
 			}
 		}
 		if("details".equalsIgnoreCase(actionCommand)) { 
+			int row = getUserTable().getSelectedRow();
+			final int ID_COLUMN = 0;
+			Long user_id = (Long) getUserTable().getModel().getValueAt(row, ID_COLUMN);
 			this.setVisible(false);
-			parent.showDetailsPanel();
+			parent.showDetailsPanel(user_id);
 		}
 	}
 
