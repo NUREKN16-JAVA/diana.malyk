@@ -112,7 +112,7 @@ public class AddPanel extends JPanel implements ActionListener {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if("ok".equalsIgnoreCase(e.getActionCommand())) {
+		if("ok".equalsIgnoreCase(e.getActionCommand())) { //$NON-NLS-1$
 			User user = new User();
 			user.setFirstName(getFirstNameField().getText());
 			user.setLastName(getLastNameField().getText());
@@ -127,7 +127,7 @@ public class AddPanel extends JPanel implements ActionListener {
 			try {
 				parent.getDao().create(user);
 			} catch (DatabaseException e2) {
-				JOptionPane.showMessageDialog(this, e2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, e2.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); //$NON-NLS-1$
 			}
 		}
 		clearFields();
@@ -135,13 +135,13 @@ public class AddPanel extends JPanel implements ActionListener {
 		parent.showBrowsePanel();
 	}
 	private void clearFields() {
-		getFirstNameField().setText("");
+		getFirstNameField().setText(""); //$NON-NLS-1$
 		getFirstNameField().setBackground(bgColor);
 		
-		getLastNameField().setText("");
+		getLastNameField().setText(""); //$NON-NLS-1$
 		getLastNameField().setBackground(bgColor);
 		
-		getDateOfBirthField().setText("");
+		getDateOfBirthField().setText(""); //$NON-NLS-1$
 		getDateOfBirthField().setBackground(bgColor);
 	}
 

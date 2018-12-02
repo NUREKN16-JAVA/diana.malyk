@@ -10,7 +10,7 @@ import nure.itkn.malyk.usermanagement.User;
 
 public class UserTableModel extends AbstractTableModel {
 	
-	private static final String[] COLUMN_NAMES = {"ID", "Имя", "Фамилия"};
+	private static final String[] COLUMN_NAMES = {"ID", Messages.getString("UserTableModel.firstName"), Messages.getString("UserTableModel.lastName")}; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	private static final Class[] COLUMN_CLASSES = {Long.class, String.class, String.class};
 	private List users = null; 
 	

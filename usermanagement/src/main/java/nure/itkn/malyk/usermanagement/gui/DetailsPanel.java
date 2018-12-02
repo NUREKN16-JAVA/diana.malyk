@@ -51,7 +51,7 @@ public class DetailsPanel extends JPanel implements ActionListener {
 		this.getIDField().setText(user.getId().toString());
 		this.getFirstNameField().setText(user.getFirstName());
 		this.getLastNameField().setText(user.getLastName());
-		this.getDateOfBirthField().setText(new java.text.SimpleDateFormat("dd.MM.yyyy")
+		this.getDateOfBirthField().setText(new java.text.SimpleDateFormat("dd.MM.yyyy") //$NON-NLS-1$
 				.format(user.getDateOfBirth()));
 	}
 	
@@ -59,10 +59,10 @@ public class DetailsPanel extends JPanel implements ActionListener {
 		if(fieldPanel == null) {
 			fieldPanel = new JPanel();
 			fieldPanel.setLayout(new GridLayout(4, 2));
-			addLabeledField(fieldPanel, "ID", getIDField()); 
-			addLabeledField(fieldPanel, "Имя", getFirstNameField()); 
-			addLabeledField(fieldPanel, "Фамилия", getLastNameField()); 
-			addLabeledField(fieldPanel, "Дата рождения", getDateOfBirthField()); 
+			addLabeledField(fieldPanel, "ID", getIDField());  //$NON-NLS-1$
+			addLabeledField(fieldPanel, nure.itkn.malyk.usermanagement.gui.Messages.getString("DetailsPanel.firstName"), getFirstNameField());  //$NON-NLS-1$
+			addLabeledField(fieldPanel, nure.itkn.malyk.usermanagement.gui.Messages.getString("DetailsPanel.lastName"), getLastNameField());  //$NON-NLS-1$
+			addLabeledField(fieldPanel, nure.itkn.malyk.usermanagement.gui.Messages.getString("DetailsPanel.dateOfBirth"), getDateOfBirthField());  //$NON-NLS-1$
 		}
 		return fieldPanel;
 	}
@@ -118,7 +118,7 @@ public class DetailsPanel extends JPanel implements ActionListener {
 	private JButton getOkButton() {
 		if (okButton == null){
 			okButton = new JButton();
-			okButton.setText("Ok"); 
+			okButton.setText("Ok");  //$NON-NLS-1$
 			okButton.setName("okButton"); //$NON-NLS-1$
 			okButton.setActionCommand("ok"); //$NON-NLS-1$
 			okButton.addActionListener(this);
@@ -133,13 +133,13 @@ public class DetailsPanel extends JPanel implements ActionListener {
 		parent.showBrowsePanel();
 	}
 	private void clearFields() {
-		getFirstNameField().setText("");
+		getFirstNameField().setText(""); //$NON-NLS-1$
 		getFirstNameField().setBackground(bgColor);
 		
-		getLastNameField().setText("");
+		getLastNameField().setText(""); //$NON-NLS-1$
 		getLastNameField().setBackground(bgColor);
 		
-		getDateOfBirthField().setText("");
+		getDateOfBirthField().setText(""); //$NON-NLS-1$
 		getDateOfBirthField().setBackground(bgColor);
 	}
 }

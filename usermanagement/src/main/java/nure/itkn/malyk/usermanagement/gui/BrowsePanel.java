@@ -118,7 +118,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
 		}
 		catch (Exception e) {
 			model = new UserTableModel(new ArrayList());
-			JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); //$NON-NLS-1$
 		}
 		getUserTable().setModel(model);
 	}
@@ -130,18 +130,18 @@ public class BrowsePanel extends JPanel implements ActionListener {
 			this.setVisible(false);
 			parent.showAddPanel();
 		}
-		if("edit".equalsIgnoreCase(actionCommand)) { 
+		if("edit".equalsIgnoreCase(actionCommand)) {  //$NON-NLS-1$
 			int row = getUserTable().getSelectedRow();
 			final int ID_COLUMN = 0;
 			Long user_id = (Long) getUserTable().getModel().getValueAt(row, ID_COLUMN);
 			this.setVisible(false);
 			parent.showEditPanel(user_id);
 		}
-		if("delete".equalsIgnoreCase(actionCommand)) { 
+		if("delete".equalsIgnoreCase(actionCommand)) {  //$NON-NLS-1$
 			final int YES = 0;
 			int yes_no = JOptionPane.showConfirmDialog(this,
-                    "Удалить выбранного пользователя?",
-                    "Подтвердите удаление", 
+                    Messages.getString("BrowsePanel.message"), //$NON-NLS-1$
+                    Messages.getString("BrowsePanel.title"),  //$NON-NLS-1$
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE); 
 			if (yes_no == YES) {
@@ -153,14 +153,14 @@ public class BrowsePanel extends JPanel implements ActionListener {
 				try {
 					parent.getDao().delete(user);
 				} catch (DatabaseException e1) {
-					JOptionPane.showMessageDialog(this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(this, e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE); //$NON-NLS-1$
 				}
 				initTable();
 				this.repaint();
 			
 			}
 		}
-		if("details".equalsIgnoreCase(actionCommand)) { 
+		if("details".equalsIgnoreCase(actionCommand)) {  //$NON-NLS-1$
 			int row = getUserTable().getSelectedRow();
 			final int ID_COLUMN = 0;
 			Long user_id = (Long) getUserTable().getModel().getValueAt(row, ID_COLUMN);
