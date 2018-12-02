@@ -5,6 +5,8 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import nure.itkn.malyk.usermanagement.db.DaoFactory;
+import nure.itkn.malyk.usermanagement.db.UserDao;
 import nure.itkn.malyk.usermanagement.util.Messages;
 
 public class MainFrame extends JFrame {
@@ -14,10 +16,18 @@ public class MainFrame extends JFrame {
 	private JPanel contentPanel;
 	private JPanel browsePanel;
 	private AddPanel addPanel;
+	private UserDao dao;
 	
 	public MainFrame() {
 		super();
+		dao = DaoFactory.getInstance().getUserDao();
 		initialize();
+	}
+	/**
+	 * @return the dao
+	 */
+	public UserDao getDao() {
+		return dao;
 	}
 	private void initialize() {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,6 +49,7 @@ public class MainFrame extends JFrame {
 		if(browsePanel == null) {
 			browsePanel = new BrowsePanel(this);
 		}
+		((BrowsePanel) browsePanel).initTable();
 		return browsePanel;
 	}
 	
