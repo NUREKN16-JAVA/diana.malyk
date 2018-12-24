@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="{http: / java.sun.com / xml / ns / j2ee} {http: /
+	java.sun.com / xml / ns / j2ee / web-app_2_5.xsd}">
+	<servlet>
+		<servlet-name>BrowseServlet</servlet-name>
+		<servlet-class>usermanagement/src/main/java/nure/itkn/malyk/usermanagement/web/BrowseServlet
+		</servlet-class>
+		<servlet-mapping>
+			<servlet-name>BrowseServlet</servlet-name>
+			<url-pattern>/browse</url-pattern>
+		</servlet-mapping>
+	</servlet>
+</web-app>

@@ -21,7 +21,6 @@ public abstract class DaoFactory {
 		}
 	}
 	
-	
 	/**
 	 * Create exactly one DaoFactory
 	 * @return instance of DaoFactory

@@ -10,26 +10,36 @@ import nure.itkn.malyk.usermanagement.db.MockDaoFactory;
 
 public abstract class MockServletTestCase extends BasicServletTestCaseAdapter {
 	
-	private Mock MockUserDao;
+	private Mock mockUserDao;
 	
 	/**
 	 * @return the mockUserDao
 	 */
 	public Mock getMockUserDao() {
-		return MockUserDao;
+		return mockUserDao;
 	}
 
 	/**
 	 * @param mockUserDao the mockUserDao to set
 	 */
-	public void setMockUserDao(Mock mockUserDao) {
-		MockUserDao = mockUserDao;
+	public void setMockUserDao(Mock mockUDao) {
+		this.mockUserDao = mockUDao;
 	}
 
-	protected void setUp() throws Exception {
-		super.setUp();
+	protected void setUp() {
+		try {
+			super.setUp();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		Properties properties = new Properties();
 		properties.setProperty("dao.factory", MockDaoFactory.class.getName());
+		try {
+			DaoFactory.init(properties);
+		} catch (Exception e) {
+			System.out.println(e.getCause());
+			e.printStackTrace();
+		}
 		setMockUserDao(((MockDaoFactory) DaoFactory.getInstance()).getMockUserDao());
 	}
 
