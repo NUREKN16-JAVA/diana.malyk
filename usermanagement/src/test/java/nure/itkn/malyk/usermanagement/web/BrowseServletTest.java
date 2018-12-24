@@ -9,7 +9,7 @@ import nure.itkn.malyk.usermanagement.User;
 
 public class BrowseServletTest extends MockServletTestCase {
 
-	protected void setUp(){
+	protected void setUp() throws Exception {
 		super.setUp();
 		createServlet(BrowseServlet.class);
 	}

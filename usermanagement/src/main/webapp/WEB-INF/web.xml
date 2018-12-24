@@ -12,4 +12,13 @@
 			<url-pattern>/browse</url-pattern>
 		</servlet-mapping>
 	</servlet>
+	<servlet>
+		<servlet-name>EditServlet</servlet-name>
+		<servlet-class>usermanagement/src/main/java/nure/itkn/malyk/usermanagement/web/EditServlet
+		</servlet-class>
+		<servlet-mapping>
+			<servlet-name>EditServlet</servlet-name>
+			<url-pattern>/edit</url-pattern>
+		</servlet-mapping>
+	</servlet>
 </web-app>

@@ -26,12 +26,8 @@ public abstract class MockServletTestCase extends BasicServletTestCaseAdapter {
 		this.mockUserDao = mockUDao;
 	}
 
-	protected void setUp() {
-		try {
-			super.setUp();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	protected void setUp() throws Exception {
+		super.setUp();
 		Properties properties = new Properties();
 		properties.setProperty("dao.factory", MockDaoFactory.class.getName());
 		try {
