@@ -14,7 +14,7 @@ import nure.itkn.malyk.usermanagement.User;
 import nure.itkn.malyk.usermanagement.db.DaoFactory;
 import nure.itkn.malyk.usermanagement.db.DatabaseException;
 
-public class EditServlet extends HttpServlet {
+public class DetailsServlet extends HttpServlet {
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
@@ -30,7 +30,7 @@ public class EditServlet extends HttpServlet {
 	}
 
 	protected void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/edit.jsp").forward(req, resp);
+		req.getRequestDispatcher("/details.jsp").forward(req, resp);
 	}
 
 	private void doCancel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -43,55 +43,6 @@ public class EditServlet extends HttpServlet {
 	 * @throws IOException
 	 */
 	private void doOk(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		User user = null;
-		try {
-			user = getUser(req);
-		} catch (ValidationException e1) {
-			req.setAttribute("error", e1.getMessage());
-			showPage(req, resp);
-			return;
-		}
-		try {
-			processUser(user);
-		} catch (DatabaseException e) {
-			e.printStackTrace();
-			new ServletException(e);
-		}
 		resp.sendRedirect("browse");
 	}
-
-	protected void processUser(User user) throws DatabaseException {
-		DaoFactory.getInstance().getUserDao().update(user);
-	}
-
-	private User getUser(HttpServletRequest req) throws ValidationException {
-		User user = new User();
-		String idStr = req.getParameter("id");
-		String firstName = req.getParameter("firstName");
-		String lastName = req.getParameter("lastName");
-		String dateStr = req.getParameter("date");
-		
-		if (firstName.isEmpty()) {
-			throw new ValidationException("First name is empty");
-		}
-		if (lastName.isEmpty()) {
-			throw new ValidationException("Last name is empty");
-		}
-		if (dateStr.isEmpty()) {
-			throw new ValidationException("Date is empty");
-		}
-		
-		if(idStr != null) {
-			user.setId(new Long(idStr));
-		}
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		try {
-			user.setDateOfBirth(DateFormat.getDateInstance().parse(dateStr));
-		} catch (ParseException e) {
-			throw new ValidationException("Date format is incorrect");
-		}
-		return user;
-	}
-
 }

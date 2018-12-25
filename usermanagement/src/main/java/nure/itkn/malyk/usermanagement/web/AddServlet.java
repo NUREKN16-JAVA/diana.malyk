@@ -14,11 +14,8 @@ import nure.itkn.malyk.usermanagement.User;
 import nure.itkn.malyk.usermanagement.db.DaoFactory;
 import nure.itkn.malyk.usermanagement.db.DatabaseException;
 
-public class EditServlet extends HttpServlet {
-	/* (non-Javadoc)
-	 * @see javax.servlet.http.HttpServlet#service(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
-	 */
-	@Override
+public class AddServlet extends HttpServlet {
+
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getParameter("okButton") != null) {
 			doOk(req, resp);
@@ -29,19 +26,10 @@ public class EditServlet extends HttpServlet {
 		}
 	}
 
-	protected void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/edit.jsp").forward(req, resp);
-	}
-
 	private void doCancel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.sendRedirect("browse");
 	}
-	/**
-	 * @param req
-	 * @param resp
-	 * @throws ServletException
-	 * @throws IOException
-	 */
+
 	private void doOk(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		User user = null;
 		try {
@@ -60,17 +48,12 @@ public class EditServlet extends HttpServlet {
 		resp.sendRedirect("browse");
 	}
 
-	protected void processUser(User user) throws DatabaseException {
-		DaoFactory.getInstance().getUserDao().update(user);
-	}
-
 	private User getUser(HttpServletRequest req) throws ValidationException {
 		User user = new User();
-		String idStr = req.getParameter("id");
 		String firstName = req.getParameter("firstName");
 		String lastName = req.getParameter("lastName");
 		String dateStr = req.getParameter("date");
-		
+
 		if (firstName.isEmpty()) {
 			throw new ValidationException("First name is empty");
 		}
@@ -80,10 +63,6 @@ public class EditServlet extends HttpServlet {
 		if (dateStr.isEmpty()) {
 			throw new ValidationException("Date is empty");
 		}
-		
-		if(idStr != null) {
-			user.setId(new Long(idStr));
-		}
 		user.setFirstName(firstName);
 		user.setLastName(lastName);
 		try {
@@ -92,6 +71,14 @@ public class EditServlet extends HttpServlet {
 			throw new ValidationException("Date format is incorrect");
 		}
 		return user;
+	}
+
+	protected void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/add.jsp").forward(req, resp);
+	}
+
+	protected void processUser(User user) throws DatabaseException {
+		DaoFactory.getInstance().getUserDao().create(user);
 	}
 
 }

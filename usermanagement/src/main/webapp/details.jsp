@@ -4,16 +4,24 @@
 	scope="session" />
 <html>
 <head>
-<title>User management/Edit</title>
+<title>User management/Details</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/edit" method="post">
-		<input type="hidden" name="id" value="${user.id}"><br>
-		First name <input type="text" name="firstName"
-			value="${user.firstName}"><br> Last name <input
-			type="text" name="lastName" value="${user.lastName}"><br>
-		Date of birth <input type="text" name="date"
-			value="<fmt:formatDate value="${user.dateOfBirth}" type="date" dateStyle="medium"/>"><br>
+	<table>
+	<tr>
+	<td>ID</td>
+	<td>First Name</td>
+	<td>Last Name</td>
+	<td>Date Of Birth</td>
+	</tr>
+	<tr>
+	<td>${user.id}</td>
+	<td>${user.firstName}</td>
+	<td>${user.lastName}</td>
+	<td>${user.dateOfBirth}</td>
+	</tr>
+	</table>
+	<form action="<%=request.getContextPath()%>/details" method="post">
 		<input type="submit" name="okButton" value="Ok"> <input
 			type="submit" name="okButton" value="Cancel">
 	</form>
