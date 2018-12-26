@@ -42,7 +42,7 @@ public class SearchAgent extends Agent {
 		}
 	}
 	
-	public void showUsers(Collection users) {
+	void showUsers(Collection users) {
 		
 	}
 }
