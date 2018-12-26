@@ -2,7 +2,9 @@ package nure.itkn.malyk.usermanagement.agent;
 
 import java.util.Collection;
 
+import jade.core.AID;
 import jade.core.Agent;
+import jade.core.behaviours.Behaviour;
 import nure.itkn.malyk.usermanagement.db.DaoFactory;
 import nure.itkn.malyk.usermanagement.db.DatabaseException;
 
@@ -32,7 +34,7 @@ public class SearchAgent extends Agent {
 			if(users.size() > 0) {
 				showUsers(users);
 			} else {
-				
+				addBehaviour(new SearchRequestBehaviour(new AID[] {}, firstName, lastName));
 			}
 			
 		} catch (DatabaseException e) {
