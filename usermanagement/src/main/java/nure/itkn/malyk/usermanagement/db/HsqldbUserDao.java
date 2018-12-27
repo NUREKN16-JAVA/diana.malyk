@@ -168,7 +168,7 @@ class HsqldbUserDao implements UserDao {
 			Connection connection = connectionFactory.createConnection();
 			PreparedStatement statement = connection.prepareStatement(SELECT_BY_NAME_QUERY);
 			statement.setString(1, firstName);
-			statement.setString(1, lastName);
+			statement.setString(2, lastName);
 			ResultSet resultSet = statement.executeQuery();
 			while (resultSet.next()) {
 				User user = new User();

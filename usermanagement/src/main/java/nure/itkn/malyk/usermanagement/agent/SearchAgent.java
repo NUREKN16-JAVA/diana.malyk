@@ -86,6 +86,7 @@ public class SearchAgent extends Agent {
 	public void search(String firstName, String lastName) throws SearchException {
 		try {
 			Collection users = DaoFactory.getInstance().getUserDao().find(firstName, lastName);
+			Collection us = DaoFactory.getInstance().getUserDao().findAll();
 			if(users.size() > 0) {
 				showUsers(users);
 			} else {
